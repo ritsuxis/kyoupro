@@ -1,36 +1,46 @@
-    #include<bits/stdc++.h>
-    #define REP(i, n) for (int i = 0; i < n ; i++)
-    #define FOR(i, a, b) for (int i = (a); i < (b); i++)
-    #define whole(f, x, ...) ([&](decltype((x)) whole) { return (f)(begin(whole), end(whole), ## __VA_ARGS__); })(x) // decltypeで型取得、引数があればva_argsのところに入れる
-    using namespace std;
-    typedef long long ll; // long longをllでかけるようにした
-    const int INF = 1e9;
-     
-    int main(void){
-        int n; cin >> n;
-        vector<int> A(n);
-        int count = 0;
-        scanf("%d", &A[0]);
-        FOR(i, 1, n) {
-            scanf("%d", &A[i]);
-            if(A[0] == A[i]) count++;
-        }
-        if(count == n - 1) {
-            printf("%d\n", A[0]);
-            return 0;
-        }
-        whole(sort, A);
-        int ans = 0;
-        FOR(i, 1, A[1] + 1){
-            int kyoyou = 0;
-            int j = 0;
-            REP(j, n)
-            {
-                if(A[j] % i != 0) kyoyou++;
-                if(kyoyou == 2) break;
-                if(j == n - 1) ans = i;
-            }
-            
-        }
-        printf("%d\n", ans);
+#include<bits/stdc++.h>
+#define REP(i, n) for (int i = 0; i < n ; i++)
+#define FOR(i, a, b) for (int i = (a); i < (b); i++)
+#define whole(f, x, ...) ([&](decltype((x)) whole) { return (f)(begin(whole), end(whole), ## __VA_ARGS__); })(x) // decltypeで型取得、引数があればva_argsのところに入れる
+using namespace std;
+typedef long long ll; // long longをllでかけるようにした
+const int INF = 1e9;
+
+/* gcdではどこから計算しても結果が変わらない特性がある（結合則）
+   これを利用して、左からのgcdと右からのgcdをあらかじめ求めておき、抜く数字の前後までのgcd同士でまたgcdする
+*/
+
+// 最大公約数
+int gcd(int a, int b){
+    int c;
+    if (a < b) {
+        a+=b; b=a-b; a-=b;
     }
+    while (b != 0) {
+        c = a % b;
+        a = b;
+        b = c;
+    }
+    return a;
+}
+
+int main(void){
+    int n; 
+    cin >> n;
+    vector<int> A(n), left(n), right(n);
+    REP(i, n) cin >> A[i];
+    int ans = 0;
+    left[0] = A[0];
+    right[0] = A[n - 1];
+    FOR(i, 1, n){
+        left[i] = gcd(left[i - 1], A[i]);
+        right[i] = gcd(right[i - 1], A[n - 1 - i]);
+    }
+    REP(i, n){
+        if(i == 0) ans = max(ans, right[n - 2]);
+        else if(i == n - 1) ans = max(ans, left[n - 2]);
+        else ans = max(ans, gcd(left[i - 1], right[n - i - 2]));
+    }
+    cout << ans << endl;
+
+}

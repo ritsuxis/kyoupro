@@ -7,23 +7,38 @@ typedef long long ll; // long longをllでかけるようにした
 const int INF = 1e9;
 
 int main(void){
-    int n; cin >> n;
-    vector<string> A(n);
-    REP(i, n) cin >> A[i];
-    int m; cin >> m;
-    vector<string> B(m);
-    REP(i, m) cin >> B[i];
-    int ans = 0;
-    auto calc = [&](string s){
-        int buf = 0;
-        for(string t : A){
-            if(t == s) buf++;
+    map<string, int> mp;
+    int N; cin >> N;
+
+    REP(i, N){
+        string s; cin >> s;
+        if(mp.count(s)){
+            int tmp = mp.at(s) + 1;
+            mp.erase(s);
+            mp.insert(make_pair(s, tmp));
         }
-        for(string t : B){
-            if(t == s) buf--;
+        else{
+            mp.insert(make_pair(s, 1));
         }
-        return buf;
-    };
-    for(string t : A) ans = max(ans, calc(t));
-    cout << ans << endl;
+    }
+
+    int M; cin >> M;
+    REP(i, M){
+        string s; cin >> s;
+        if(mp.count(s)){
+            int tmp = mp.at(s) - 1;
+            mp.erase(s);
+            mp.insert(make_pair(s, tmp));
+        }
+        else{
+            mp.insert(make_pair(s, 1));
+        }
+    }
+
+    int res = 0;
+    for(auto itr = mp.begin(); itr != mp.end(); ++itr){
+        res = max(itr -> second, res);
+    }
+    cout << res << endl;
+
 }
