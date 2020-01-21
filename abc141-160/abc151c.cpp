@@ -7,22 +7,19 @@ typedef long long ll; // long longをllでかけるようにした
 const int INF = 1e9;
 
 int main(void){
-    int n; cin >> n;
-    vector<string> s(n);
-    REP(i, n){
-        string temp; cin >> temp;
-        whole(sort, temp);
-        s[i] = temp;
-    }
-    whole(sort, s);
-    ll ans = 0, cnt = 0;
-    REP(i, n){
-        cnt++;
-        if((i < n - 1 and s[i] != s[i + 1]) or i == n - 1){
-            ans += (cnt * (cnt - 1)) / 2;
-            cnt = 0;
+    int n, m; cin >> n >> m;
+    vector<pair<int, bool>> num(n);
+    ll ac = 0, wa = 0;
+    REP(i, m){
+        int number; cin >> number; number--;
+        string s; cin >> s;
+        if(!num[number].second and s == "AC"){
+            num[number].second = true;
+            ac++;
+            wa += num[number].first;
+        }else if(s == "WA" and !num[number].second){
+            num[number].first++;
         }
     }
-
-    cout << ans << endl;
+    cout << ac << " " << wa << endl;
 }

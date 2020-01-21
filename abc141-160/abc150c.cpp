@@ -8,21 +8,23 @@ const int INF = 1e9;
 
 int main(void){
     int n; cin >> n;
-    vector<string> s(n);
+    vector<int> num(n);
+    REP(i, n) num[i] = i + 1;
+    vector<int> fst, sec;
     REP(i, n){
-        string temp; cin >> temp;
-        whole(sort, temp);
-        s[i] = temp;
+        int tmp; cin >> tmp;
+        fst.push_back(tmp);
     }
-    whole(sort, s);
-    ll ans = 0, cnt = 0;
     REP(i, n){
+        int tmp; cin >> tmp;
+        sec.push_back(tmp);
+    }
+    int a = 0, b = 0;
+    int cnt = 1;
+    while(whole(next_permutation, num)){
+        if(num == fst) a = cnt;
+        if(num == sec) b = cnt;
         cnt++;
-        if((i < n - 1 and s[i] != s[i + 1]) or i == n - 1){
-            ans += (cnt * (cnt - 1)) / 2;
-            cnt = 0;
-        }
     }
-
-    cout << ans << endl;
+    cout << abs(a - b) << endl;
 }

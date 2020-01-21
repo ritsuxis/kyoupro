@@ -6,15 +6,7 @@ using namespace std;
 typedef long long ll; // long longをllでかけるようにした
 const int INF = 1e9;
 
-class tree{
-    public:
-        int 
-        vector<int> children;
-
-
-};
-
 int main(void){
-    int n, q; cin >> n >> q;
-
+    int a, b, c; cin >> a >> b >> c;
+    cout << (a + b + c >= 22 ? "bust" : "win") << endl;
 }

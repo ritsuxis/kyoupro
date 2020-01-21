@@ -6,15 +6,17 @@ using namespace std;
 typedef long long ll; // long longをllでかけるようにした
 const int INF = 1e9;
 
-class tree{
-    public:
-        int 
-        vector<int> children;
-
-
-};
-
 int main(void){
-    int n, q; cin >> n >> q;
+    double n; cin >> n;
+    double ans = 0;
 
+    vector<pair<double, double>> root(n);
+    REP(i, n) cin >> root[i].first >> root[i].second;
+
+    REP(i, n - 1){
+        FOR(j, i + 1, n){
+            ans += sqrt(pow(root[i].first - root[j].first, 2.0) + pow(root[i].second - root[j].second, 2.0));
+        }
+    }
+    cout << fixed << setprecision(8) << (ans * 2) / n << endl;
 }
