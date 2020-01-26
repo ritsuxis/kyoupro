@@ -8,19 +8,20 @@ const int INF = 1e9;
 
 int main(void){
     int n; cin >> n;
-    vector<int> spot(n + 2),  expect(n + 2), distance(n + 2);
-    ll sumall = 0;
+    map<int, int> mp;
     REP(i, n){
-        cin >> spot[i + 1];
-        distance[i + 1] = abs(spot[i + 1] - spot[i]);
-        sumall += abs(spot[i + 1] - spot[i]);
+        int tmp; cin >> tmp;
+        auto fd = mp.find(tmp); // iterator, mp.findは、みつけれなかったときにmp.end()を返す
+        if(fd != mp.end()) {
+            if(mp.at(tmp) == 1) mp[tmp] = 0;
+            else mp[tmp] = 1;
+        }
+        else mp.emplace(tmp, 1);
     }
-    sumall += abs(spot[n]);
-    distance[n + 1] = abs(spot[n]);
-    for(int i = 1; i <= n; i++){
-        expect[i] = abs(spot[i + 1] - spot[i - 1]);
+    ll ans = 0;
+    for(pair<int, int> i : mp){ // 範囲ベースのfor
+            if(i.second == 1) ans++;
     }
-    REP(i, n){
-        cout << sumall - (distance[i + 1] + distance[i + 2]) + expect[i + 1] << endl;
-    }
+    cout << ans << endl;
+
 }
