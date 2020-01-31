@@ -13,7 +13,8 @@ template <typename T = long long > T in () { T x; cin >> x; return(x);}
 signed main(void){
     int x = in(), y = in(), n = in();
     vector<bool> yoko(x + 1), tate(y + 1);
-    
+    yoko[0] = true;
+    tate[0] = true;
     int i;
     REP(j, n){
         int a = in(), b = in(), f = in();
