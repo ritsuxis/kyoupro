@@ -9,18 +9,24 @@ const int MOD = 1000000007; // 計算してからmodで割る ans = (ans * a) % 
 #define int long long
 template <typename T = long long > T in () { T x; cin >> x; return(x);}
 // int a = in() のように使うlong long以外の型の時はstirng s = in<string>()のように型を指定する
+#define cal(d) (x - b * d) / a
+int a, b, x;
 
 signed main(void){
-    int n = in();
-    int ans_num;
-    // 範囲をsqrt(n) <= i <= nにするとTLEする（範囲の大きさは一緒じゃない！！）
-    // ex) n = 8の時 1 <= n <= sqrt(8) = 2√2 と 2√2 <= n <= 8は範囲の広さが全然違う
-    for(int i = 1; i <= sqrt(n); i++){
-        if(n % i == 0){
-            ans_num = i;
+    a = in();
+    b = in();
+    x = in();
+    int ans;
+    if(x - b <= 0) cout << 0 << endl;
+    else{
+        // cout << "in" << endl;
+        ans = (cal(1) < 10 ? cal(1) : 9);
+        for(int i = 2; i <= 9; i++){
+            if(cal(i) >= pow(10, i - 1)) ans = (cal(i) < pow(10, i) ? cal(i) : pow(10, i) - 1);
+            else break;
         }
+        // 10のa乗の桁はa+1桁
+        if(cal(10) >= pow(10, 9)) ans = pow(10, 9);
+        cout << ans << endl;
     }
-
-    string ans = to_string(n / ans_num);
-    cout << ans.size() << endl;
 }

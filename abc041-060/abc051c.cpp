@@ -11,16 +11,17 @@ template <typename T = long long > T in () { T x; cin >> x; return(x);}
 // int a = in() のように使うlong long以外の型の時はstirng s = in<string>()のように型を指定する
 
 signed main(void){
-    int n = in();
-    int ans_num;
-    // 範囲をsqrt(n) <= i <= nにするとTLEする（範囲の大きさは一緒じゃない！！）
-    // ex) n = 8の時 1 <= n <= sqrt(8) = 2√2 と 2√2 <= n <= 8は範囲の広さが全然違う
-    for(int i = 1; i <= sqrt(n); i++){
-        if(n % i == 0){
-            ans_num = i;
-        }
-    }
-
-    string ans = to_string(n / ans_num);
-    cout << ans.size() << endl;
+    // UURDDLLUUURRDRDDDLLU
+    int sx = in(), sy = in(), tx = in(), ty = in();
+    REP(i, ty - sy) cout << 'U';
+    REP(i, tx - sx) cout << 'R';
+    REP(i, ty - sy) cout << 'D';
+    REP(i, tx - sx) cout << 'L';
+    cout << 'L';
+    REP(i, ty - sy + 1) cout << 'U';
+    REP(i, tx - sx + 1) cout << 'R';
+    cout << "DR";
+    REP(i, ty - sy + 1) cout << 'D';
+    REP(i, tx - sx + 1) cout << 'L';
+    cout << 'U' << endl;
 }

@@ -11,16 +11,29 @@ template <typename T = long long > T in () { T x; cin >> x; return(x);}
 // int a = in() のように使うlong long以外の型の時はstirng s = in<string>()のように型を指定する
 
 signed main(void){
-    int n = in();
-    int ans_num;
-    // 範囲をsqrt(n) <= i <= nにするとTLEする（範囲の大きさは一緒じゃない！！）
-    // ex) n = 8の時 1 <= n <= sqrt(8) = 2√2 と 2√2 <= n <= 8は範囲の広さが全然違う
-    for(int i = 1; i <= sqrt(n); i++){
-        if(n % i == 0){
-            ans_num = i;
+    string s, t; cin >> s >> t;
+    vector<string> ans;
+
+    int now = 0;
+    if(s.size() < t.size()){
+        cout << "UNRESTORABLE" << endl;
+        return 0;
+    }
+    REP(i, s.size() - t.size() + 1){
+        bool flag = true;
+        REP(j, t.size()) if(s[i + j] != t[j] and s[i + j] != '?') flag = false;
+        if(flag){
+            string tmp = s;
+            REP(j, t.size()) tmp[i + j] = t[j];
+            REP(j, tmp.size()) if(tmp[j] == '?') tmp[j] = 'a';
+            ans.push_back(tmp);
         }
     }
+    if(ans.empty()) cout << "UNRESTORABLE" << endl;
+    else{
+        whole(sort, ans);
+        cout << ans[0] << endl;
+    }
 
-    string ans = to_string(n / ans_num);
-    cout << ans.size() << endl;
+    
 }
