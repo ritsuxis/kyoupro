@@ -15,3 +15,4 @@ https://atcoder.jp/users/seiritsu
 メモ:  
 abc147C -> bit全探索  
 Pythonは文字列操作に便利  
+wslに環境を移行
