@@ -3,8 +3,12 @@
         "algorithm": "cpp",
         "iostream": "cpp",
         "ostream": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "iomanip": "cpp",
+        "chrono": "cpp",
+        "complex": "cpp",
+        "random": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled",
-    "python.pythonPath": "C:\\Users\\ritsu\\AppData\\Local\\Programs\\Python\\Python37\\python.exe"
+    "python.pythonPath": "/home/seiritsu/.pyenv/versions/3.8.1/bin/python"
 }

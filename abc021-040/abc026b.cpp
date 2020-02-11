@@ -5,24 +5,21 @@
 using namespace std;
 typedef long long ll; // long longをllでかけるようにした
 const int INF = 1e9;
+const double PI = 3.1415926535;
 const int MOD = 1000000007; // 計算してからmodで割る ans = (ans * a) % mod
 #define int long long
 template <typename T = long long > T in () { T x; cin >> x; return(x);}
 // int a = in() のように使うlong long以外の型の時はstirng s = in<string>()のように型を指定する
 
 signed main(void){
-    char c[4][4];
-    REP(i, 4){
-        REP(j, 4){
-            cin >> c[i][j];
-        }
+    int n = in();
+    vector<int> num(n);
+    REP(i, n) cin >> num[i];
+    whole(sort, num, greater<>());
+    double ans = 0;
+    REP(i, n){
+        if(i % 2 == 0) ans += pow(num[i], 2);
+        else ans -= pow(num[i], 2);
     }
-
-    for(int i = 3; i >= 0; i--){
-        for(int j = 3; j >= 0; j--){
-            if(j != 3) cout << " ";
-            cout << c[i][j];
-        }
-        cout << endl;
-    }
+    cout << fixed << setprecision(10) << ans * PI << endl;
 }

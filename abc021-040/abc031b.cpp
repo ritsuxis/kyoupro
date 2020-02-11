@@ -11,18 +11,12 @@ template <typename T = long long > T in () { T x; cin >> x; return(x);}
 // int a = in() のように使うlong long以外の型の時はstirng s = in<string>()のように型を指定する
 
 signed main(void){
-    char c[4][4];
-    REP(i, 4){
-        REP(j, 4){
-            cin >> c[i][j];
-        }
-    }
-
-    for(int i = 3; i >= 0; i--){
-        for(int j = 3; j >= 0; j--){
-            if(j != 3) cout << " ";
-            cout << c[i][j];
-        }
-        cout << endl;
+    int a, b; cin >> a >> b;
+    int n = in();
+    REP(i, n){
+        int tmp = in();
+        if(tmp > b) cout << -1 << endl;
+        else if(tmp >= a) cout << 0 << endl;
+        else cout << a - tmp << endl;
     }
 }
