@@ -12,28 +12,29 @@ template <typename T = long long > T in () { T x; cin >> x; return(x);}
 // int a = in() のように使うlong long以外の型の時はstirng s = in<string>()のように型を指定する
 
 signed main(void){
-    int t, n; cin >> t >> n;
-    vector<int> tako(n);
-    REP(i, n) cin >> tako[i];
-    int m = in();
-    vector<int> people(m);
-    REP(i, m) cin >> people[i];
-    if(n < m) cout << "no" << endl;
-    else{
-        bool ans = true;
-        int sale = 0;
-        REP(i, m){
-            while(ans){
-                if(people[i] - tako[sale] < 0) ans = false;
-                else if(people[i] - tako[sale] <= t){
-                    sale++;
-                    break;
-                }
-                else sale++;
-                if(sale >= n) ans = false;
-            }
-            if(!ans) break;
-        }
-        cout << (ans ? "yes" : "no") << endl;
+    int n = in();
+    int ng1, ng2, ng3; cin >> ng1 >> ng2 >> ng3;
+    if(n == ng1 or n == ng2 or n == ng3){
+        cout << "NO" << endl;
+        return 0;
     }
+    REP(i, 100){
+        for(int j = 3; j > 0; j--){
+            if(n - j != ng1 and n - j != ng2 and n - j != ng3){
+                n -= j;
+                // cout << n << endl;
+                break;
+            }
+            else if(j == 1){
+                cout << "NO" << endl;
+                return 0;
+            }
+        }
+        if(n <= 0){
+            n = 0;
+            break;
+        }
+    }
+    if(n == 0) cout << "YES" << endl;
+    else cout << "NO" << endl;
 }

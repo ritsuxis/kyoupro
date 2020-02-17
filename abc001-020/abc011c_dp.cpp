@@ -12,28 +12,23 @@ template <typename T = long long > T in () { T x; cin >> x; return(x);}
 // int a = in() のように使うlong long以外の型の時はstirng s = in<string>()のように型を指定する
 
 signed main(void){
-    int t, n; cin >> t >> n;
-    vector<int> tako(n);
-    REP(i, n) cin >> tako[i];
-    int m = in();
-    vector<int> people(m);
-    REP(i, m) cin >> people[i];
-    if(n < m) cout << "no" << endl;
-    else{
-        bool ans = true;
-        int sale = 0;
-        REP(i, m){
-            while(ans){
-                if(people[i] - tako[sale] < 0) ans = false;
-                else if(people[i] - tako[sale] <= t){
-                    sale++;
-                    break;
-                }
-                else sale++;
-                if(sale >= n) ans = false;
-            }
-            if(!ans) break;
+    int n = in();
+    vector<int> ng(3);
+    REP(i, 3) cin >> ng[i];
+    
+    REP(i, 3) if(n == ng[i]){cout << "NO" << endl; return 0;}
+    int dp[n + 1]; // ある数xになるまで最短何手かかるかでdp
+    REP(i, n) dp[i] = INF;
+    dp[n] = 0; // n != ng のとき、nになるまでかかる手は0手
+    for(int i = n; i >= 0; i--){
+        if(ng[0] == i) continue;
+        if(ng[1] == i) continue;
+        if(ng[2] == i) continue;
+
+        for(int j = 1; j <= 3; j++){
+            dp[i - j] = min(dp[i] + 1, dp[i - j]);
         }
-        cout << (ans ? "yes" : "no") << endl;
     }
+
+    cout << (dp[0] <= 100 ? "YES" : "NO") << endl;
 }
