@@ -20,3 +20,4 @@ wslに環境を移行
 map<string, int> mp に対してmp[s]++ と入れたときにsがキーの中に無かったらC++はいいように解釈してmp(s, 1)を作ってくれる  
 範囲for ex) for(auto i : mp)  
 二分探索  
+char組み合わせてstringにしたい時 char tmp = 'a'; string s = {tmp, 'bc'}; // "abc"になる
