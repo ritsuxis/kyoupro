@@ -70,6 +70,7 @@ template<int MOD> struct Fp {
 
 using mint = Fp<MOD>;
 
+// 繰り返し自乗法 x^n mod M で計算
 int power(int x, int n, int M){
     int res = 1;
     if(n > 0){
@@ -80,6 +81,15 @@ int power(int x, int n, int M){
     return res;
 }
 
+
+// nCk(Combination)の計算 (1 ≦ k ≦ n ≦ 107 程度)それ以上はnCk2へ
+/*  // 前処理
+    COMinit();
+
+    // 計算例
+    out << COM(100000, 50000) << endl;
+*/
+const int MAX = 510000;
 long long fac[MAX], finv[MAX], inv[MAX];
 
 // テーブルを作る前処理
@@ -109,15 +119,17 @@ signed main(void){
     COMinit();
     ans -= COM(n, b) + COM(n, a);
     */
-    mint tmp = 1;
+
+    // nがでかくてkがそんなにな時は普通にO(k)でnCkを計算する
+    mint shita = 1;
     REP(i, a){
-        tmp *= (i + 1);
+        shita *= (i + 1);
     }
-    mint p = 1;
+    mint ue = 1;
     REP(i, a){
-        p *= (n - i);
+        ue *= (n - i);
     }
-    ans -= p / tmp;
+    mint ans = ue / shita;
 
 
     tmp = 1;

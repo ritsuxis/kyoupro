@@ -14,10 +14,12 @@ https://atcoder.jp/users/seiritsu
 
 メモ:  
 abc147C -> bit全探索  
-Pythonは文字列操作に便利  
-wslに環境を移行  
+Pythonは文字列操作に便利   
 桁DPをする(abc155e, yukicoder No.636)  
 map<string, int> mp に対してmp[s]++ と入れたときにsがキーの中に無かったらC++はいいように解釈してmp(s, 1)を作ってくれる  
 範囲for ex) for(auto i : mp)  
 二分探索  
-char組み合わせてstringにしたい時 char tmp = 'a'; string s = {tmp, 'bc'}; // "abc"になる
+char組み合わせてstringにしたい時 char tmp = 'a'; string s = {tmp, 'bc'}; // "abc"になる  
+構造体のvectorに代入したい時とかpush_backに複数の要素を入れたい時は{}で囲んで順番通りに入れてやるといい感じに入れてくれる G[s].push_back({t, d});  
+ある範囲に同じ数字を入れたい時 ex) fill(a, a + v, INF)
+２次元配列の宣言 vector<vector<int>> dp(3100, vector<int>(3100));
