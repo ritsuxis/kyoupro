@@ -12,17 +12,18 @@ const int MOD = 1000000007; // 計算してからmodで割る ans = (ans * a) % 
 template <typename T = long long > T in () { T x; cin >> x; return(x);}
 // int a = in() のように使うlong long以外の型の時はstirng s = in<string>()のように型を指定する
 
+// 負の経路を「含まない」単一始点最短経路
 // ここから
 
-static const int MAX = 100100; // nによって変える
+static const int MAX_V = 100100; // Vによって変える
 struct edge {int to, cost; };
 typedef pair<int, int> P; // firstは最短距離, secondは頂点の番号
 
 int V; // 頂点数
-vector<edge> G[MAX];
-int d[MAX]; // 距離
+vector<edge> G[MAX_V];
+int d[MAX_V]; // 距離
 
-void dijkstra(int s) {
+void Dijkstra(int s) {
     priority_queue<P, vector<P>, greater<P> > que;
     fill(d, d + V, INF); // 範囲内にINFを代入
     d[s] = 0; // 始点での最短距離は０
