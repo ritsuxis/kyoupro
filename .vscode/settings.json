@@ -22,5 +22,5 @@
         "valarray": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled",
-    "python.pythonPath": "/home/seiritsu/.pyenv/versions/3.8.1/bin/python"
+    "python.pythonPath": "/home/seiritsu/homework/python_works/venv/bin/python3"
 }
