@@ -132,11 +132,11 @@ signed main(void){
     mint ans = ue / shita;
 
 
-    tmp = 1;
+    int tmp = 1;
     REP(i, b){
         tmp *= (i + 1);
     }
-    p = 1;
+    int p = 1;
     REP(i, b){
         p *= (n - i);
     }
